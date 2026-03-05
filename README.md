@@ -1,67 +1,54 @@
-# HomeostaticDANN
+# Inhibitory Normalization
 
-**HomeostaticDANN** (Homeostatic Dale's Artificial Neural Network) is an implementation of a specialized artificial neural network incorporating homeostasis-inspired mechanisms. This project is grounded in Dale's Principle, combined with domain adaptation techniques to improve network robustness and stability. The model aims to enhance the adaptability and resilience of neural networks under variable conditions, balancing network excitability and inhibition inspired by biological systems.
+Code accompanying the paper: **Inhibitory normalization of error signals improves learning in neural circuits**.
 
-## Work in Progress
+## Overview
 
-**This repository is a work in progress.** Please note that the code, features, and documentation may change as development continues. I welcome your thoughts and comments on the project. For more details on this project, here is the [white paper](https://drive.google.com/file/d/1Zk0jb8XOfjlpu5Qq-KG2njwczrpAfSkV/view?usp=drive_link).
+This repository provides:
+- **`inhib_norm/`** — core library implementing E-I layers, normalization modules, and optimizers
+- **`experiments/dense_mnist/`** — training scripts and figure notebooks for the MNIST experiments
+- **`tests/`** — unit tests for all components
 
 ## Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/HomeostaticDANN.git
-   cd HomeostaticDANN
-   ```
-
-2. **Create and load the virtual environment**:
-   To set up a virtual environment and install dependencies, run the following in the project’s root directory:
-
-   ```bash
-   ./make_venv.sh
-   ```
-
-   Then, load the virtual environment with:
-
-   ```bash
-   source ./load_venv.sh
-   ```
-
-## Usage
-
-HomeostaticDANN provides two implementations: a dense homeostatic network and an RNN-based homeostatic network. You can find both models in the `HomeostaticDANN/models` directory.
-
-Here’s an example command to run the Dense Homeostatic DANN with customizable hyperparameters:
-
 ```bash
-python path/to/HomeostaticDANN/models/dense_mnist_task/src/train.py \
-  --data.brightness_factor=<brightness_factor> \
-  --train.dataset=<dataset_name> \
-  --opt.use_sep_inhib_lrs=<use_sep_inhib_lrs> \
-  --opt.lr=<learning_rate> \
-  --opt.inhib_lrs.wei=<inhib_lr_wei> \
-  --opt.inhib_lrs.wix=<inhib_lr_wix> \
-  --opt.inhib_momentum=<inhib_momentum> \
-  --opt.momentum=<momentum> \
-  --train.batch_size=<batch_size> \
-  --opt.lambda_homeo=<lambda_homeostasis> \
-  --model.normtype=<norm_type> \
-  --model.task_opt_inhib=<task_opt_inhib> \
-  --model.homeostasis=<homeostasis> \
-  --model.excitation_training=<excitation_training> \
-  --model.hidden_layer_width=<hidden_layer_width> \
-  --model.homeo_opt_exc=<homeo_opt_exc> \
-  --opt.use_sep_bias_gain_lrs=<use_sep_bias_gain_lrs> \
-  --exp.wandb_project=<wandb_project_name> \
-  --model.implicit_homeostatic_loss=<implicit_homeostatic_loss> \
-  --exp.wandb_entity=<wandb_entity_name> \
-  --exp.use_wandb=<use_wandb>
-  --exp.name=<experiment_name> \
-  --exp.save_model=<save_model>
+git clone https://github.com/yourusername/inhibitory-normalization.git
+cd inhibitory-normalization
+pip install -e .
 ```
 
-Replace the placeholder values (`<...>`) with appropriate values based on your experiment setup.
+Dependencies are listed in `requirements.txt`. A GPU is recommended but not required.
 
-**Note**: Ensure you configure Weights & Biases (`wandb`) with your own account and entity to log and view results effectively.
+## Running Experiments
 
+Training scripts are in `experiments/dense_mnist/src/`.
 
+**E-I network (non-homeostatic):**
+```bash
+python experiments/dense_mnist/src/train_EI_network.py \
+  --opt.lr=1 --opt.wd=1e-6 \
+  --opt.inhib_lrs.wei=1e-4 --opt.inhib_lrs.wix=0.5 \
+  --opt.momentum=0.5 --opt.inhib_momentum=0 \
+  --train.batch_size=32 --exp.name="ei_network"
+```
+
+**Homeostatic E-I network:**
+```bash
+python experiments/dense_mnist/src/train_homeostatic_network.py \
+  --opt.lr=0.2 --opt.wd=1e-6 \
+  --opt.inhib_lrs.wei=0.5 --opt.inhib_lrs.wix=1e-4 \
+  --opt.momentum=0.5 --opt.inhib_momentum=0.9 \
+  --train.batch_size=32 --exp.name="homeostatic_dann"
+```
+
+Experiment tracking uses Weights & Biases (`wandb`). Set `--exp.use_wandb=True` and configure `--exp.wandb_project` and `--exp.wandb_entity` with your own account.
+
+## Reproducing Figures
+
+Figure notebooks are in `experiments/dense_mnist/figures/`. Open and run each notebook after completing training runs.
+
+## Tests
+
+```bash
+python -m pytest tests/
+```

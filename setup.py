@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="Homeostatic DANN",
+    name="inhib_norm",
     packages=find_packages(),
     version='0.1.0',
-    description='Balanced Excitation-Inhibition Artificial Neural Networks',
+    description='Inhibitory normalization of error signals improves learning in neural circuits',
     author='Roy Henha Eyono',
     license='MIT'
 )
