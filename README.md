@@ -6,7 +6,7 @@ Code accompanying the paper: **Inhibitory normalization of error signals improve
 
 This repository provides:
 - **`inhib_norm/`** — core library implementing E-I layers, normalization modules, and optimizers
-- **`experiments/dense_mnist/`** — training scripts and figure notebooks for the MNIST experiments
+- **`experiments/perceptual_invariant_fashionmnist/`** — training scripts and figure notebooks for the MNIST experiments
 - **`tests/`** — unit tests for all components
 
 ## Installation
@@ -21,11 +21,11 @@ Dependencies are listed in `requirements.txt`. A GPU is recommended but not requ
 
 ## Running Experiments
 
-Training scripts are in `experiments/dense_mnist/src/`.
+Training scripts are in `experiments/perceptual_invariant_fashionmnist/src/`.
 
 **E-I network (non-homeostatic):**
 ```bash
-python experiments/dense_mnist/src/train_EI_network.py \
+python experiments/perceptual_invariant_fashionmnist/src/train_EI_network.py \
   --opt.lr=1 --opt.wd=1e-6 \
   --opt.inhib_lrs.wei=1e-4 --opt.inhib_lrs.wix=0.5 \
   --opt.momentum=0.5 --opt.inhib_momentum=0 \
@@ -34,7 +34,7 @@ python experiments/dense_mnist/src/train_EI_network.py \
 
 **Homeostatic E-I network:**
 ```bash
-python experiments/dense_mnist/src/train_homeostatic_network.py \
+python experiments/perceptual_invariant_fashionmnist/src/train_homeostatic_network.py \
   --opt.lr=0.2 --opt.wd=1e-6 \
   --opt.inhib_lrs.wei=0.5 --opt.inhib_lrs.wix=1e-4 \
   --opt.momentum=0.5 --opt.inhib_momentum=0.9 \
@@ -45,7 +45,7 @@ Experiment tracking uses Weights & Biases (`wandb`). Set `--exp.use_wandb=True` 
 
 ## Reproducing Figures
 
-Figure notebooks are in `experiments/dense_mnist/figures/`. Open and run each notebook after completing training runs.
+Figure notebooks are in `experiments/perceptual_invariant_fashionmnist/figures/`. Open and run each notebook after completing training runs.
 
 ## Tests
 
