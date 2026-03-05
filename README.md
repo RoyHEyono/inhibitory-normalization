@@ -11,13 +11,21 @@ This repository provides:
 
 ## Installation
 
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if you don't have it, then:
+
 ```bash
 git clone https://github.com/yourusername/inhibitory-normalization.git
 cd inhibitory-normalization
-pip install -e .
+bash create_venv.sh
 ```
 
-Dependencies are listed in `requirements.txt`. A GPU is recommended but not required.
+To activate the environment in a new shell:
+
+```bash
+source activate_env.sh
+```
+
+A GPU is recommended but not required.
 
 ## Running Experiments
 
