@@ -22,7 +22,7 @@ bash create_venv.sh
 To activate the environment in a new shell:
 
 ```bash
-source activate_env.sh
+source .venv/bin/activate
 ```
 
 A GPU is recommended but not required.
