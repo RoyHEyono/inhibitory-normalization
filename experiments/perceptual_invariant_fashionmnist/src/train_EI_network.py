@@ -6,47 +6,27 @@ The goal is to evaluate the performance of layer normalization for DANNs network
 # %%
 # %load_ext autoreload
 # %autoreload 2
-from operator import truediv
 #import cv2
 import os
-import sys
 import numpy as np 
-from pprint import pprint
 from tqdm import tqdm
-import argparse
-from fastargs import Section, Param, get_current_config
-from fastargs.decorators import param
-import uuid
-
-import matplotlib.pyplot as plt
+from fastargs import Section, Param
 import wandb
-# from orion.client import report_objective
 from pathlib import Path
-import json
-from fastargs.dict_utils import NestedNamespace
-import pickle as pkl
-
 
 import torch 
-import torch.nn as nn 
-from torch.amp import GradScaler, autocast
+from torch.amp import autocast
 from torch.nn import CrossEntropyLoss
-from torch.optim import lr_scheduler, Adam
-import torch.nn.functional as F
 
 from inhib_norm.data.dataloaders import get_dataloaders
 #from data.imagenet_ffcv import ImagenetFfcvDataModule, IMAGENET_MEAN
 import inhib_norm.utils as train_utils
 #from config import DANNS_DIR
 #import lib.utils
-from inhib_norm.sequential import Sequential
-import inhib_norm.dense as densenn
 import inhib_norm.edensenet as edensenet
 import inhib_norm.eidensenet as eidensenet
-from inhib_norm.optimisation import AdamW, get_linear_schedule_with_warmup, SGD
 import inhib_norm.optimisation as optimizer_utils
 #from munch import DefaultMunch
-import inhib_norm.utils as utils
 #ood_scatter_plot, recon_var_plot, mean_plot, var_plot
 
 import torch.backends.xnnpack
