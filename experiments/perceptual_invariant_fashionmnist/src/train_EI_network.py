@@ -20,7 +20,7 @@ import uuid
 
 import matplotlib.pyplot as plt
 import wandb
-from orion.client import report_objective
+# from orion.client import report_objective
 from pathlib import Path
 import json
 from fastargs.dict_utils import NestedNamespace

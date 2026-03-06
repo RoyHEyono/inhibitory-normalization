@@ -16,3 +16,4 @@ wandb==0.21.0
 ipykernel==6.30.0
 fastargs==1.2.0
 orion==0.2.7
+terminaltables==3.1.10
