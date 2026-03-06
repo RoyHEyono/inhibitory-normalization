@@ -3,7 +3,7 @@
 # Requires uv: https://docs.astral.sh/uv/getting-started/installation/
 set -e
 
-uv venv .venv
+uv venv .venv --python 3.9.15
 source .venv/bin/activate
 uv pip install -r requirements.txt
 uv pip install -e .

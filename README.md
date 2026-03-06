@@ -25,7 +25,7 @@ To activate the environment in a new shell:
 source .venv/bin/activate
 ```
 
-A GPU is recommended but not required.
+Requires Python 3.9.15 (uv will install it automatically). A GPU is recommended but not required.
 
 ## Running Experiments
 
