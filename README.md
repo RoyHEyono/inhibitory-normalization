@@ -31,7 +31,7 @@ Requires Python 3.9.15 (uv will install it automatically). A GPU is recommended 
 
 Training scripts are in `experiments/perceptual_invariant_fashionmnist/src/`.
 
-**E-I network (non-homeostatic):**
+**E-I network:**
 ```bash
 python experiments/perceptual_invariant_fashionmnist/src/train_EI_network.py \
   --opt.lr=1 --opt.wd=1e-6 \
@@ -40,7 +40,7 @@ python experiments/perceptual_invariant_fashionmnist/src/train_EI_network.py \
   --train.batch_size=32 --exp.name="ei_network"
 ```
 
-**Homeostatic E-I network:**
+**I-Norm network:**
 ```bash
 python experiments/perceptual_invariant_fashionmnist/src/train_homeostatic_network.py \
   --opt.lr=0.2 --opt.wd=1e-6 \
@@ -53,7 +53,9 @@ Experiment tracking uses Weights & Biases (`wandb`). Set `--exp.use_wandb=True` 
 
 ## Reproducing Figures
 
-Figure notebooks are in `experiments/perceptual_invariant_fashionmnist/figures/`. Open and run each notebook after completing training runs.
+Figures in the paper are generated from results logged to Weights & Biases (`wandb`). The main project containing the experiment runs used for the paper is [`Luminosity_LNHomeostasis` on W&B](https://wandb.ai/project_danns/Luminosity_LNHomeostasis).
+
+Figure notebooks are in `experiments/perceptual_invariant_fashionmnist/figures/`. Open and run each notebook after completing training runs, using the data from the corresponding `wandb` runs.
 
 ## Tests
 
